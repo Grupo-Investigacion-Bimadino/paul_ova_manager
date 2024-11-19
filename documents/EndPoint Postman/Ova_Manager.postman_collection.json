@@ -26,7 +26,7 @@
 			"response": []
 		},
 		{
-			"name": "Get_id_Contenidos",
+			"name": "Get_Id_Contenidos",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -172,6 +172,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"texto\": \"\",\r\n    \"senderId\": \"\",\r\n    \"fecha_cracion\":\"\",\r\n    \"estado\": \"\",\r\n    \"id_ovas\": \"\",\r\n    \"id_usuarios\":\"\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:3000/comentarios",
 					"protocol": "http",
