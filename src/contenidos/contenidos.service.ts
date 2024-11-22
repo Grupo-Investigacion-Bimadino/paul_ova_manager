@@ -15,18 +15,32 @@ export class ContenidosService {
   }
 
   findAll() {
-    return `This action returns all contenidos`;
+    return this.contenidosModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} contenido`;
+  findOne(id: string) {
+    return this.contenidosModel.findById(id)
   }
 
-  update(id: number, updateContenidoDto: UpdateContenidoDto) {
-    return `This action updates a #${id} contenido`;
+  async update(id: string, updateContenidoDto: UpdateContenidoDto) {
+    try {
+      const updateContenidos = await this.contenidosModel.findByIdAndUpdate(id, updateContenidoDto, {new:true});
+      return updateContenidos;
+    }
+    catch (e) {
+      console.error(e)
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} contenido`;
+ async remove(id: string) {
+  try {
+    const DeleteContenidos = await this.contenidosModel.findByIdAndDelete(id);
+    return DeleteContenidos
   }
+  catch(e){
+    console.error(e)
+  }
+
+ 
+}
 }

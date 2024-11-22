@@ -19,16 +19,16 @@ export class ComentariosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.comentariosService.findOne(+id);
+    return this.comentariosService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateComentarioDto: UpdateComentarioDto) {
-    return this.comentariosService.update(+id, updateComentarioDto);
+    return this.comentariosService.update(id, updateComentarioDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.comentariosService.remove(+id);
+    return this.comentariosService.remove(id);
   }
 }

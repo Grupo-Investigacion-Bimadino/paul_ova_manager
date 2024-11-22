@@ -8,8 +8,13 @@ import { OvasModule } from './ovas/ovas.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [ContenidosModule, UsuariosModule, ComentariosModule, OvasModule,
-      MongooseModule.forRoot('mongodb+srv://kmunozmora:ywKS8RXKur9sKb0n@cluster0.yuzpj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')],
+  imports: [
+    ContenidosModule, 
+    UsuariosModule, 
+    ComentariosModule, 
+    OvasModule,
+    MongooseModule.forRoot('mongodb+srv://kmunozmora:ywKS8RXKur9sKb0n@cluster0.yuzpj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

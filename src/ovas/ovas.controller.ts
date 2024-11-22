@@ -19,16 +19,16 @@ export class OvasController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.ovasService.findOne(+id);
+    return this.ovasService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateOvaDto: UpdateOvaDto) {
-    return this.ovasService.update(+id, updateOvaDto);
+    return this.ovasService.update(id, updateOvaDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.ovasService.remove(+id);
+    return this.ovasService.remove(id);
   }
 }

@@ -15,18 +15,30 @@ export class UsuariosService {
   }
 
   findAll() {
-    return `This action returns all usuarios`;
+    return this.usuariosModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+  findOne(id: string) {
+    return this.usuariosModel.findById(id)
   }
 
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+  async update(id: string, updateUsuariosDto: UpdateUsuarioDto) {
+    try {
+      const updateUsuarios = await this.usuariosModel.findByIdAndUpdate(id, updateUsuariosDto, {new:true});
+      return updateUsuarios;
+    }
+    catch (e) {
+      console.error(e)
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} usuario`;
+ async remove(id: string) {
+  try {
+    const DeleteUsuarios = await this.usuariosModel.findByIdAndDelete(id);
+    return DeleteUsuarios
   }
+  catch(e){
+    console.error(e)
+  } 
+}
 }

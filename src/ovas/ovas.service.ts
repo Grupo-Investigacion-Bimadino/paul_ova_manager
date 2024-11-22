@@ -15,18 +15,30 @@ export class OvasService {
   }
   
   findAll() {
-    return `This action returns all ovas`;
+    return this.ovasModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} ova`;
+  findOne(id: string) {
+    return this.ovasModel.findById(id)
   }
 
-  update(id: number, updateOvaDto: UpdateOvaDto) {
-    return `This action updates a #${id} ova`;
+  async update(id: string, updateOvasDto: UpdateOvaDto) {
+    try {
+      const updateOvas = await this.ovasModel.findByIdAndUpdate(id, updateOvasDto, {new:true});
+      return updateOvas;
+    }
+    catch (e) {
+      console.error(e)
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} ova`;
+ async remove(id: string) {
+  try {
+    const DeleteOvas = await this.ovasModel.findByIdAndDelete(id);
+    return DeleteOvas
   }
+  catch(e){
+    console.error(e)
+  } 
+}
 }

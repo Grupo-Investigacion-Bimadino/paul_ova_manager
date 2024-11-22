@@ -15,18 +15,30 @@ export class ComentariosService {
   }
 
   findAll() {
-    return `This action returns all comentarios`;
+    return this.comentariosModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} comentario`;
+  findOne(id: string) {
+    return this.comentariosModel.findById(id)
   }
 
-  update(id: number, updateComentarioDto: UpdateComentarioDto) {
-    return `This action updates a #${id} comentario`;
+  async update(id: string, updateComentariosDto: UpdateComentarioDto) {
+    try {
+      const UpdateComentario = await this.comentariosModel.findByIdAndUpdate(id, updateComentariosDto, {new:true});
+      return UpdateComentario;
+    }
+    catch (e) {
+      console.error(e)
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} comentario`;
+ async remove(id: string) {
+  try {
+    const DeleteComentarios = await this.comentariosModel.findByIdAndDelete(id);
+    return DeleteComentarios
   }
+  catch(e){
+    console.error(e)
+  }
+}
 }

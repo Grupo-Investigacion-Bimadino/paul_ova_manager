@@ -5,7 +5,6 @@ import { Document } from 'mongoose';
 export class Usuarios extends Document {
   @Prop()
   id_contenidos: [];
-
 }
 
 export const UsuariosSchema = SchemaFactory.createForClass(Usuarios);

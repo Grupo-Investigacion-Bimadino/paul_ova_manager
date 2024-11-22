@@ -19,16 +19,16 @@ export class ContenidosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.contenidosService.findOne(+id);
+    return this.contenidosService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateContenidoDto: UpdateContenidoDto) {
-    return this.contenidosService.update(+id, updateContenidoDto);
+    return this.contenidosService.update(id, updateContenidoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.contenidosService.remove(+id);
+    return this.contenidosService.remove(id);
   }
 }
