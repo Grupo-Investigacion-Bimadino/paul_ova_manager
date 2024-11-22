@@ -1,11 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { CreateContenidoDto } from './dto/create-contenido.dto';
 import { UpdateContenidoDto } from './dto/update-contenido.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Contenidos } from './schemas/contenidos.schema';
 
 @Injectable()
 export class ContenidosService {
-  create(createContenidoDto: CreateContenidoDto) {
-    return 'This action adds a new contenido';
+  constructor(@InjectModel(Contenidos.name) private contenidosModel: Model<Contenidos>) {}
+  async create(createContenidoDto: CreateContenidoDto) {
+    const createdContenidos = new this.contenidosModel(createContenidoDto);
+    const result = await createdContenidos.save();
+    return result;
   }
 
   findAll() {
