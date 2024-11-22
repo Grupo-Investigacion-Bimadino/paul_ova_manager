@@ -1,13 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOvaDto } from './dto/create-ova.dto';
 import { UpdateOvaDto } from './dto/update-ova.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Ovas } from './schemas/ovas.schema';
 
 @Injectable()
 export class OvasService {
-  create(createOvaDto: CreateOvaDto) {
-    return 'This action adds a new ova';
+  constructor(@InjectModel(Ovas.name) private ovasModel: Model<Ovas>) {}
+  async create(createOvaDto: CreateOvaDto) {
+    const createdOvas = new this.ovasModel(createOvaDto);
+    const result = await createdOvas.save();
+    return result;
   }
-
+  
   findAll() {
     return `This action returns all ovas`;
   }
