@@ -24,7 +24,8 @@ export class ComentariosService {
 
   async update(id: string, updateComentariosDto: UpdateComentarioDto) {
     try {
-      const UpdateComentario = await this.comentariosModel.findByIdAndUpdate(id, updateComentariosDto, {new:true});
+      const UpdateComentario = await this.comentariosModel.findByIdAndUpdate(id, updateComentariosDto, 
+        {new:true});
       return UpdateComentario;
     }
     catch (e) {

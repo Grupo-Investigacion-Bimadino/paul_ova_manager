@@ -24,7 +24,8 @@ export class ContenidosService {
 
   async update(id: string, updateContenidoDto: UpdateContenidoDto) {
     try {
-      const updateContenidos = await this.contenidosModel.findByIdAndUpdate(id, updateContenidoDto, {new:true});
+      const updateContenidos = await this.contenidosModel.findByIdAndUpdate(id, updateContenidoDto, 
+        {new:true});
       return updateContenidos;
     }
     catch (e) {
