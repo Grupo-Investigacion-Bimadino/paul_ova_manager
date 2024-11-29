@@ -29,9 +29,6 @@ export class Usuarios extends Document {
 
   @Prop()
     actualizado_en: Date;
-    
 }
-
-
 
 export const UsuariosSchema = SchemaFactory.createForClass(Usuarios);
