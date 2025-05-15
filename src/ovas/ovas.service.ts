@@ -7,12 +7,40 @@ import { Ovas } from './schemas/ovas.schema';
 export class OvasService {
   constructor(@InjectModel(Ovas.name) private ovasModel: Model<Ovas>) {}
 
+  /**
+   * ✅ Crear un nuevo REDA
+   */
   async create(data: Partial<Ovas>) {
-    const created = new this.ovasModel(data);
-    return created.save();
+    try {
+      const created = new this.ovasModel(data);
+      return await created.save();
+    } catch (error) {
+      console.error('Error al crear el REDA:', error);
+      throw error;
+    }
   }
 
+  /**
+   * ✅ Obtener todos los REDAs
+   */
   async findAll() {
-    return this.ovasModel.find();
+    try {
+      return await this.ovasModel.find().exec();
+    } catch (error) {
+      console.error('Error al obtener los REDAs:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * ✅ Obtener REDAs por autor
+   */
+  async findByAuthor(authorId: string) {
+    try {
+      return await this.ovasModel.find({ id_autor: authorId }).exec();
+    } catch (error) {
+      console.error('Error al obtener los REDAs por autor:', error);
+      throw error;
+    }
   }
 }

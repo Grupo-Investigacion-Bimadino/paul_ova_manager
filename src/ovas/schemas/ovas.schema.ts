@@ -3,16 +3,32 @@ import { Document } from 'mongoose';
 
 @Schema({ timestamps: true })
 export class Ovas extends Document {
-  @Prop() id_elementos: number;
-  @Prop() nombre: string;
-  @Prop() descripcion: string;
-  @Prop() id_autor: string;
-  @Prop() categoria: string;
-  @Prop() ruta: string;
-  @Prop() formato: string;
-  @Prop({ default: () => new Date() }) fecha_subida: Date;
-  @Prop() valoracion: number;
-  @Prop() id_contenido: [];
+  @Prop({ type: Number })
+  id_elementos: number;
+
+  @Prop({ required: true })
+  nombre: string;
+
+  @Prop({ required: true })
+  descripcion: string;
+
+  @Prop({ type: String, required: true })
+  id_autor: string;
+
+  @Prop({ default: 'general' })
+  categoria: string;
+
+  @Prop({ required: true })
+  ruta: string;
+
+  @Prop({ required: true })
+  formato: string;
+
+  @Prop({ default: 0 })
+  valoracion: number;
+
+  @Prop({ type: [String], default: [] })
+  id_contenido: string[];
 }
 
 export const OvasSchema = SchemaFactory.createForClass(Ovas);

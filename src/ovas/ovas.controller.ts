@@ -1,6 +1,12 @@
 import { Express } from 'express';
-import { Controller, Post, Get, Body, UploadedFile,
-  UseInterceptors
+import { 
+  Controller, 
+  Post, 
+  Get, 
+  Body, 
+  UploadedFile, 
+  UseInterceptors, 
+  Param 
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -12,6 +18,7 @@ import { OvasService } from './ovas.service';
 export class OvasController {
   constructor(private readonly ovasService: OvasService) {}
 
+  // ✅ Subir REDA
   @Post()
   @UseInterceptors(FileInterceptor('file', {
     storage: diskStorage({
@@ -39,8 +46,20 @@ export class OvasController {
     });
   }
 
-  @Get()
-  async findAll() {
-    return this.ovasService.findAll();
+  // ✅ Obtener todos los REDAs (para los estudiantes)
+@Get()
+async findAll() {
+  const ovas = await this.ovasService.findAll();
+  ovas.forEach(ova => {
+    ova.ruta = `http://localhost:3002/uploads/${ova.ruta}`;
+  });
+  return ovas;
+}
+
+
+  // ✅ Obtener REDAs por autor (por ejemplo, por docente específico)
+  @Get('author/:authorId')
+  async findByAuthor(@Param('authorId') authorId: string) {
+    return this.ovasService.findByAuthor(authorId);
   }
 }
