@@ -43,4 +43,19 @@ export class OvasService {
       throw error;
     }
   }
+
+  /**
+   * ✅ Actualizar un REDA
+   * Permite modificar los detalles de un REDA
+   */
+  async update(id: string, updateData: Partial<Ovas>) {
+    try {
+      const updatedReda = await this.ovasModel.findByIdAndUpdate(id, updateData, { new: true });
+      return updatedReda;
+    } catch (error) {
+      console.error('Error al actualizar el REDA:', error);
+      throw error;
+    }
+  }
 }
+
